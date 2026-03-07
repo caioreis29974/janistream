@@ -2,6 +2,7 @@ package dev.janistream;
 
 import dev.janistream.api.JikanClient;
 import dev.janistream.model.Anime;
+import dev.janistream.ui.TerminalUI;
 import picocli.CommandLine;
 
 import java.io.IOException;
@@ -16,9 +17,9 @@ public class Main implements Runnable{
         try {
             JikanClient jikanClient = new JikanClient();
             List<Anime> animes = jikanClient.search(query);
-            for (Anime anime : animes){
-                System.out.println(anime.getTitle());
-            }
+            TerminalUI terminalUI = new TerminalUI();
+            Anime animeSelecionado = terminalUI.selectAnime(animes);
+            System.out.println("Você selecionou: " + animeSelecionado.getTitle());
         } catch (IOException e) {
             System.out.println("Erro ao buscar animes: " + e.getMessage());
         }

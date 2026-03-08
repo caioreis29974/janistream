@@ -3,6 +3,7 @@ package dev.janistream;
 import dev.janistream.api.JikanClient;
 import dev.janistream.model.Anime;
 import dev.janistream.model.Episode;
+import dev.janistream.player.StreamPlayer;
 import dev.janistream.ui.TerminalUI;
 import picocli.CommandLine;
 
@@ -16,6 +17,7 @@ public class Main implements Runnable{
     }
     public void run(){
         try {
+
             JikanClient jikanClient = new JikanClient();
             List<Anime> animes = jikanClient.search(query);
             TerminalUI terminalUI = new TerminalUI();
@@ -25,7 +27,11 @@ public class Main implements Runnable{
             List<Episode> episodes = jikanClient.getEpisodes(animeSelecionado.getMalId());
             Episode episodioSelecionado = terminalUI.selectEpisode(episodes);
             System.out.println("Você selecionou o episodio: " + episodioSelecionado.getTitle());
-        } catch (IOException e) {
+
+            StreamPlayer streamPlayer = new StreamPlayer();
+            streamPlayer.play(animeSelecionado, episodioSelecionado);
+
+        } catch (IOException | InterruptedException e) {
             System.out.println("Erro ao buscar animes: " + e.getMessage());
         }
     }

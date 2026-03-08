@@ -74,7 +74,7 @@ public class TerminalUI {
                     terminal.writer().println("  " + episodes.get(i).getNumber() + " - " + episodes.get(i).getTitle());
                 }
             }
-            
+
             terminal.writer().flush();
             int tecla = terminal.reader().read();
 

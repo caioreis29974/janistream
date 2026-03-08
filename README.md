@@ -103,4 +103,4 @@ MIT — see [LICENSE](LICENSE)
 
 ---
 
-<p align="center">Made with ☕ by <a href="https://github.com/caioxyz">caioxyz</a></p>
+<p align="center">Made with ☕ by <a href="https://github.com/caioreis29974">caioxyz</a></p>

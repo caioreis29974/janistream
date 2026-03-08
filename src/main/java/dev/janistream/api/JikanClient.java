@@ -3,6 +3,8 @@ package dev.janistream.api;
 
 import com.google.gson.Gson;
 import dev.janistream.model.Anime;
+import dev.janistream.model.Episode;
+import dev.janistream.model.JikanEpisodeResponse;
 import dev.janistream.model.JikanResponse;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -33,5 +35,19 @@ public class JikanClient {
         String json = response.body().string();
         JikanResponse jikanResponse = gson.fromJson(json, JikanResponse.class);
         return jikanResponse.getData();
+    }
+
+    public List<Episode> getEpisodes(int malId) throws IOException {
+        String url = "https://api.jikan.moe/v4/anime/" + malId + "/episodes";
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+        Response response = http.newCall(request).execute();
+        if (!response.isSuccessful()){
+            throw new IOException("Erro na requisição: " + response.code());
+        }
+        String json = response.body().string();
+        JikanEpisodeResponse jikanEpisodeResponse = gson.fromJson(json, JikanEpisodeResponse.class);
+        return jikanEpisodeResponse.getData();
     }
 }

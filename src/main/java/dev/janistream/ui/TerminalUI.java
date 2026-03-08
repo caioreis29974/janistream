@@ -21,7 +21,7 @@ public class TerminalUI {
 
     public Anime selectAnime(List<Anime> animes) throws IOException {
         terminal.enterRawMode();
-        
+
         int selecionado = 0;
         while (true) {
             terminal.writer().print("\033[2J\033[H");

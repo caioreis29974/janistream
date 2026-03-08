@@ -31,14 +31,14 @@ mpv reproduz diretamente
 |------------|------------|
 | [yt-dlp](https://github.com/yt-dlp/yt-dlp) | `pip install yt-dlp` |
 | [mpv](https://mpv.io/) | `sudo dnf install mpv` |
-| Java 17+ | [Download](https://adoptium.net/) |
+| Java 17+ | [Download](https://www.oracle.com/br/java/technologies/downloads/) |
 
 ---
 
 ## Instalação
 
 ```bash
-git clone https://github.com/caioxyz/janistream.git
+git clone https://github.com/caioreis29974/janistream.git
 cd janistream
 mvn package -DskipTests
 java -jar target/janistream-1.0-SNAPSHOT.jar --query "Naruto"

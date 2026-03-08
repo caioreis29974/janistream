@@ -23,9 +23,8 @@ public class Main implements Runnable{
             System.out.println("Você selecionou: " + animeSelecionado.getTitle());
 
             List<Episode> episodes = jikanClient.getEpisodes(animeSelecionado.getMalId());
-            for (Episode episode : episodes){
-                System.out.println(episode.getNumber() + " - " + episode.getTitle());
-            }
+            Episode episodioSelecionado = terminalUI.selectEpisode(episodes);
+            System.out.println("Você selecionou o episodio: " + episodioSelecionado.getTitle());
         } catch (IOException e) {
             System.out.println("Erro ao buscar animes: " + e.getMessage());
         }

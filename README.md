@@ -1,10 +1,17 @@
-# janistream 🎌
+<div align="center">
+
+# 🎌 janistream 🎌
+
+[![CI](https://github.com/caioreis29974/janistream/actions/workflows/ci.yml/badge.svg)](https://github.com/caioreis29974/janistream/actions/workflows/ci.yml)
 
 [🇧🇷 Leia em Português](README.pt.md)
 
-> Stream anime directly in your terminal. No browser, no downloads, no ads.
+Stream anime directly in your terminal. No browser, no downloads, no ads.
 
 Built in pure Java, using yt-dlp for stream resolution and mpv for playback.
+
+</div>
+
 
 ---
 

@@ -2,6 +2,8 @@
 
 # 🎌 janistream 🎌
 
+[![CI](https://github.com/caioreis29974/janistream/actions/workflows/ci.yml/badge.svg)](https://github.com/caioreis29974/janistream/actions/workflows/ci.yml)
+
 [🇺🇸 Read in English](README.md)
 
 Assista anime diretamente no seu terminal. Sem navegador, sem downloads, sem anúncios.

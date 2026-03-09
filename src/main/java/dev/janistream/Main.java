@@ -43,11 +43,9 @@ public class Main implements Runnable{
             List<Anime> animes = jikanClient.search(query);
             TerminalUI terminalUI = new TerminalUI();
             Anime animeSelecionado = terminalUI.selectAnime(animes);
-            System.out.println("Você selecionou: " + animeSelecionado.getTitle());
 
             List<Episode> episodes = jikanClient.getEpisodes(animeSelecionado.getMalId());
             Episode episodioSelecionado = terminalUI.selectEpisode(episodes);
-            System.out.println("Você selecionou o episodio: " + episodioSelecionado.getTitle());
 
             StreamPlayer streamPlayer = new StreamPlayer();
             streamPlayer.play(animeSelecionado, episodioSelecionado);

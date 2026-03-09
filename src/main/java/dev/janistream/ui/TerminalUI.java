@@ -15,6 +15,9 @@ public class TerminalUI {
     private final Terminal terminal;
     private final LineReader lineReader;
 
+    public static final String BLUE = "\033[34m";
+    public static final String RESET = "\033[0m";
+
     public TerminalUI() throws IOException {
         this.terminal = TerminalBuilder.builder().system(true).build();
         this.lineReader = LineReaderBuilder.builder().terminal(terminal).build();
@@ -30,11 +33,12 @@ public class TerminalUI {
 
             for (int i = 0; i < animes.size(); i++) {
                 if (i == selecionado) {
-                    terminal.writer().println("❯ " + animes.get(i).getTitle());
+                    terminal.writer().println(BLUE + "❯ " + animes.get(i).getTitle() + RESET);
                 } else {
                     terminal.writer().println("  " + animes.get(i).getTitle());
                 }
             }
+            terminal.writer().println("\n  " + BLUE + (selecionado + 1) + "/" + animes.size() + RESET);
             terminal.writer().flush();
 
             int tecla = terminal.reader().read();
@@ -69,12 +73,13 @@ public class TerminalUI {
 
             for (int i = inicio; i < fim; i++) {
                 if (i == selecionado) {
-                    terminal.writer().println("❯ " + episodes.get(i).getNumber() + " - " + episodes.get(i).getTitle());
+                    terminal.writer().println(BLUE + "❯ " + episodes.get(i).getNumber() + " - " + episodes.get(i).getTitle() + RESET);
                 } else {
                     terminal.writer().println("  " + episodes.get(i).getNumber() + " - " + episodes.get(i).getTitle());
                 }
             }
 
+            terminal.writer().println("\n  " + BLUE + (selecionado + 1) + "/" + episodes.size() + RESET);
             terminal.writer().flush();
             int tecla = terminal.reader().read();
 

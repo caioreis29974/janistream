@@ -2,12 +2,12 @@ package dev.janistream.db;
 
 import dev.janistream.model.Anime;
 import dev.janistream.model.Episode;
+import dev.janistream.model.HistoryEntry;
 
 import java.io.File;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Database {
 
@@ -40,6 +40,22 @@ public class Database {
         stmt.setInt(2, episode.getNumber());
         stmt.setString(3, episode.getTitle());
         stmt.executeUpdate();
+    }
+
+    public List<HistoryEntry> getHistory() throws SQLException {
+        String sql = "SELECT * FROM history ORDER BY watched_at DESC";
+        ResultSet rs = connection.createStatement().executeQuery(sql);
+        List<HistoryEntry> history = new ArrayList<>();
+        while (rs.next()){
+            history.add(new HistoryEntry(
+                    rs.getInt("id"),
+                    rs.getString("anime_title"),
+                    rs.getInt("episode_number"),
+                    rs.getString("episode_title"),
+                    rs.getString("watched_at")
+            ));
+        }
+        return history;
     }
 
 }

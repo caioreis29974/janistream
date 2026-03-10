@@ -5,6 +5,7 @@ import dev.janistream.api.JikanClient;
 import dev.janistream.db.Database;
 import dev.janistream.model.Anime;
 import dev.janistream.model.Episode;
+import dev.janistream.model.HistoryEntry;
 import dev.janistream.player.StreamPlayer;
 import dev.janistream.ui.TerminalUI;
 import picocli.CommandLine;
@@ -34,6 +35,26 @@ public class Main implements Runnable{
     }
 
     public void run(){
+
+        if (history) {
+            try {
+                Database db = new Database();
+                List<HistoryEntry> entries = db.getHistory();
+                for (HistoryEntry entry : entries) {
+                    System.out.printf("  %d  %s  ep. %d  %s  %s%n",
+                            entry.getId(),
+                            entry.getAnimeTitle(),
+                            entry.getEpisodeNumber(),
+                            entry.getEpisodeTitle(),
+                            entry.getWatchedAt()
+                    );
+                }
+            } catch (SQLException e) {
+                System.out.println("Erro ao buscar histórico: " + e.getMessage());
+            }
+            return;
+        }
+
         if (query == null) {
             new CommandLine(this).usage(System.out);
             return;
@@ -64,4 +85,7 @@ public class Main implements Runnable{
 
     @CommandLine.Option(names = "--query", description = "Search for an anime to stream")
     String query;
+
+    @CommandLine.Option(names = "--history", description = "Show watch history")
+    boolean history;
 }

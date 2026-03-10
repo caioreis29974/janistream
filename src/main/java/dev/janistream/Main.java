@@ -17,7 +17,7 @@ import java.util.List;
 @CommandLine.Command(
         name = "janistream",
         mixinStandardHelpOptions = true,
-        version = "janistream 1.0.0"
+        version = "janistream 1.5.0"
 )
 public class Main implements Runnable{
     public static void main(String[] args) {

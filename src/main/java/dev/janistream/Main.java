@@ -2,6 +2,7 @@ package dev.janistream;
 
 import com.github.lalyos.jfiglet.FigletFont;
 import dev.janistream.api.JikanClient;
+import dev.janistream.db.Database;
 import dev.janistream.model.Anime;
 import dev.janistream.model.Episode;
 import dev.janistream.player.StreamPlayer;
@@ -9,6 +10,7 @@ import dev.janistream.ui.TerminalUI;
 import picocli.CommandLine;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 @CommandLine.Command(
@@ -50,8 +52,13 @@ public class Main implements Runnable{
             StreamPlayer streamPlayer = new StreamPlayer();
             streamPlayer.play(animeSelecionado, episodioSelecionado);
 
+            Database db = new Database();
+            db.saveHistory(animeSelecionado, episodioSelecionado);
+
         } catch (IOException | InterruptedException e) {
             System.out.println("Erro ao buscar animes: " + e.getMessage());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
